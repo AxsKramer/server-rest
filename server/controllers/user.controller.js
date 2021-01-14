@@ -5,10 +5,12 @@ const User = require('../models/user.model');
 function getUsers(req, res) {
   let from = req.query.from || 0;
   let limit = req.query.limit || 5;
+  from = Number(from);
+  limit = Number(limit);
 
   User.find({state: true},'name email role state google img')
-    .skip(Number(from))
-    .limit(Number(limit))
+    .skip(from)
+    .limit(limit)
     .exec((error, users) => {
       if(error) return res.status(400).json({ok: false, message: error.messgae});
 

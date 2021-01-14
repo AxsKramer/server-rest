@@ -1,3 +1,5 @@
+const { sign } = require('jsonwebtoken');
+
 require('dotenv').config();
 
 const config = {
@@ -6,7 +8,9 @@ const config = {
   dbInit: process.env.DB_INIT,
   dbHost: process.env.DB_HOST,
   dbPort: process.env.DB_PORT,
-  dbName: process.env.DB_NAME
+  dbName: process.env.DB_NAME,
+  expToken: process.env.EXP_TOKEN,
+  signwordToken: process.env.SIGN_TOKEN
 };
 
 module.exports = config;

@@ -12,7 +12,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
 
-mongoose.connect(Mongo_URI,{useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true, useFindAndModify: false}, (error, res) => {
+mongoose.connect(Mongo_URI,{useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true, useFindAndModify: false,}, (error, res) => {
   if(error) throw error;
   console.log('Database connected');
 })

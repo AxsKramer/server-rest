@@ -1,7 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const {userLogin} = require('../controllers/login.controller');
+const {userLogin, loginWithGoogle} = require('../controllers/login.controller');
 
 router.post('/', userLogin);
+router.post('/google', loginWithGoogle);
+
+
 
 module.exports = router;

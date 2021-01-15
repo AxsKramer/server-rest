@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 const config = require('../config');
 
 const checktoken = (req, res, next) => {
-  const token = req.get('token'); // o Authorization
+  const token = req.get('token'); // o Authorization  Header
 
   jwt.verify(token, config.signwordToken, (error, decoded) => {
     if(error) return res.status(401).json({ok: false, message: error.message, token: 'JsonWebTokenError'});

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
 
-const Schema = mongoose.Schema
+const Schema = mongoose.Schema;
 
 const validRoles = {
   values: ['ADMIN_ROLE', 'USER_ROLE'],

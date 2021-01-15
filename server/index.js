@@ -5,6 +5,8 @@ const config = require('./config');
 
 const userRouter = require('./routes/user.router');
 const loginRouter = require('./routes/login.router');
+const categoryRouter = require('./routes/category.router');
+const productRouter = require('./routes/product.router');
 
 const app = express();
 const Mongo_URI = `${config.dbInit}${config.dbHost}:${config.dbPort}/${config.dbName}`;
@@ -19,10 +21,9 @@ app.use(express.json());
 
 app.use(express.static(path.resolve(__dirname,'../public')));
 
-
-
-
 app.use('/user', userRouter);
 app.use('/login', loginRouter);
+app.use('/category', categoryRouter);
+app.use('/products', productRouter);
 
 app.listen(config.port, () => console.log(`Server running at http://localhost:${config.port}`));

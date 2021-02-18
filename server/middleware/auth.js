@@ -28,7 +28,23 @@ const checkAdminRole = (req, res, next) => {
     : res.status(401).json({ok: false, message: 'El usuario no es administrador'} );
 }
 
+//===============
+//Verificar Token EN URL
+//===============
+
+const verificarTokenImg = (req, res, next) => {
+  let token = req.query.token;
+
+  jwt.verify(token, config.signwordToken, (error, decoded) => {
+    if(error) return res.status(401).json({ok: false, message: error.message, token: 'JsonWebTokenError'});
+
+    req.user = decoded.user;
+    next();
+  } )
+}
+
 module.exports = {
   checktoken,
-  checkAdminRole
+  checkAdminRole,
+  verificarTokenImg
 }

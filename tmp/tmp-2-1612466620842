@@ -1,0 +1,94 @@
+
+//Este no es un closure
+const moneyBox = coins => {
+    var saveCoins = 0;
+    saveCoins += coins;
+    console.log(`MoneyBox: $${saveCoins}`);
+}
+
+moneyBox(5);
+moneyBox(10);
+
+//Closure
+const moneyBox = () => {
+
+    var saveCoins = 0;
+
+    const countCoins = coins => {
+        saveCoins += coins;
+        console.log(`MoneyBox: $${saveCoins}`);
+    }
+    return countCoins
+}
+
+let myMoneyBox = moneyBox();
+
+myMoneyBox(4); //4
+myMoneyBox(6); //10
+myMoneyBox(10); //20
+
+
+//Ambito lexico dentro de un closure
+//Como generar nuevos alcances dentro de lo que estamos creando
+//con nuestro codigo y como lo podemos implementar de formas distintas
+
+const buildCount = (i) => {
+    
+    let count = i;
+
+    const displayCount = () => {
+        console.log(count++);
+    }
+
+    return displayCount;
+}
+
+//El ambito lexico es las funciones que se ejecutan utilizando la cadena del
+//alcance donde estaba vigente en su momento
+
+const myCount = buildCount(1);
+myCount();
+myCount();
+myCount();
+
+const myOtherCount = buildCount(10);
+myOtherCount();
+myOtherCount();
+//Tenemos un nuevo closure, un nuevo alcance un nuevo ambito y podemos tener
+//una nueva forma de manejar la variable. Esto significa que nosostros 
+//podemos tener esta función que es nuestro closure poderla asinar a myCount
+//y empezar a trabajar con ella con la asignación y trabajar con el alcance
+//del ambito que tiene esta variable la cual estamos trabajando y poder crear un nuevo
+//scope un nuevo alcance en otra función poederla ejecutar y poder contar desde
+//nosotros necesitemos
+
+
+
+//No podemos reasignar ni cambiar el valor de SaveName 
+//Desde otro lado de nuestra aplicación si no debemos de utilizar los metodos
+// set y get para hacer estas asignaciones. De esta forma estamos generando
+//una propiedad o un valor que es privado y que no tenemos acceso a ella
+//y de esta forma vamos a poder trabajar con con loss clorures para manejar datos
+//privados
+
+const person = () => {
+    var saveName = "Name";
+    return {
+        getName: () => {
+            return saveName;
+        },
+        setName: (name) => {
+            saveName = name
+        },
+    };
+};
+
+newPerson = person();
+console.log(newPerson.getName());
+newPerson.setName('Oscar')
+console.log(newPerson.getName())
+
+//El hoisting eleva las declaraciones
+//Solo en declaracione sy no en asignaciones
+
+//Las funciones levanta las declaraciones siempre
